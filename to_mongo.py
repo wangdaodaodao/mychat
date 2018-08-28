@@ -3,9 +3,7 @@ __author__ = 'wangdaodao'
 
 
 import pymongo
-
 from settings import MONGO_DB, MONGO_URL, MONGO_TABLE
-
 
 
 class MongoPipeline(object):
