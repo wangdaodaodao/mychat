@@ -20,7 +20,8 @@ def save_to_file(friends_list):
     # mongodb.to_mongo(friends_list)
 
 def download_images(friends_list):
-    imamge_dir = './imagers/'
+    imamge_dir = './images/'
+    print('正在下载头像')
     num = 1
     for f in friends_list:
         image_name = str(num) + '.jpg'
@@ -28,12 +29,13 @@ def download_images(friends_list):
         img = itchat.get_head_img(userName=f['UserName'])
         with open(imamge_dir + image_name, 'wb') as ff:
             ff.write(img)
+    print('头像下载完毕！')
 
 
 
 if __name__ == '__main__':
-    itchat.login()
-    friends = itchat.get_friends(update=True)[0: 5]
+    itchat.auto_login(hotReload=True)
+    friends = itchat.get_friends(update=True)[0: ]
     friends_list = []
 
     sex_dict = {}
@@ -42,9 +44,6 @@ if __name__ == '__main__':
     sex_dict['2'] = '女'
 
     for friend in friends:
-        item = {}
-        item['NickName'] = friend['NickName']
-
         item = {}
         item['NickName'] = friend['NickName']
         item['HeadImgUrl'] = friend['HeadImgUrl']
@@ -61,3 +60,4 @@ if __name__ == '__main__':
 
 
 save_to_file(friends_list)
+download_images(friends_list)
