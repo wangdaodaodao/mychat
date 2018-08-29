@@ -26,5 +26,6 @@ class MongoPipeline(object):
         self.conn.close()
 
 
+        
 # x = MongoPipeline()
 # x.to_mongo({'name':22222, 'sex':'female'})
