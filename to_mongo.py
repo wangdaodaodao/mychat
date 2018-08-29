@@ -12,7 +12,8 @@ class MongoPipeline(object):
     def to_mongo(self, item):
         collection_name = MONGO_TABLE
         db = self.conn[MONGO_DB]
-        db[collection_name].insert(dict(item))
+        for tt in item:
+            db[collection_name].insert(dict(item))
         print('done!')
 
     def from_mongo(self):

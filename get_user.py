@@ -7,7 +7,7 @@ import json
 import itchat
 import codecs
 
-# from to_mongo import MongoPipeline as db
+from to_mongo import MongoPipeline as db
 
 def save_to_file(friends_list):
     out_file = './data/friends.json'
@@ -15,9 +15,9 @@ def save_to_file(friends_list):
         f.write(json.dumps(friends_list, ensure_ascii=False))
 
 
-# def save_to_mongo(friends_list):
-    # mongodb = db()
-    # mongodb.to_mongo(friends_list)
+def save_to_mongo(friends_list):
+    mongodb = db()
+    mongodb.to_mongo(friends_list)
 
 def download_images(friends_list):
     imamge_dir = './images/'
@@ -59,5 +59,6 @@ if __name__ == '__main__':
 
 
 
-save_to_file(friends_list)
-download_images(friends_list)
+# save_to_file(friends_list)
+# download_images(friends_list)
+save_to_mongo(friends_list)
