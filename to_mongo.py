@@ -15,7 +15,7 @@ class MongoPipeline(object):
         db[collection_name].insert(dict(item))
         print('done!')
 
-    def form_mongo(self):
+    def from_mongo(self):
         collection_name = MONGO_TABLE
         db = self.conn[MONGO_DB]
         collection = db.get_collection(collection_name)
