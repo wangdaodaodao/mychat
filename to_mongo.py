@@ -13,7 +13,7 @@ class MongoPipeline(object):
         collection_name = MONGO_TABLE
         db = self.conn[MONGO_DB]
         for tt in item:
-            db[collection_name].insert(dict(item))
+            db[collection_name].insert(dict(tt))
         print('done!')
 
     def from_mongo(self):

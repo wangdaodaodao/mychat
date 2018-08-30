@@ -61,4 +61,4 @@ if __name__ == '__main__':
 
 # save_to_file(friends_list)
 # download_images(friends_list)
-save_to_mongo(friends_list)
+# save_to_mongo(friends_list)
