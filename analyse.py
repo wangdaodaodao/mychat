@@ -23,15 +23,16 @@ def mergeImage():
         for file in files:
             if 'jpg' in file and os.path.getsize(os.path.join(root, file)) > 0:
                 photo_path_list.append(os.path.join(root, file))
-            elif 'jpg' in file and os.path.getsize(os.path.join(root, file)) = 0:
+            elif 'jpg' in file and os.path.getsize(os.path.join(root, file)) == 0:
                 photo_path_list.append(os.path.join(root, file))
     
     pic_num = len(photo_path_list)
     line_max = int(math.sqrt(pic_num))-2
     row_max = int(math.sqrt(pic_num)) + 4
     print(line_max, row_max, pic_num)
-
     
+    for i in range(0, line_max):
+        for j in range(0, line_max)
 
 
 
