@@ -34,6 +34,8 @@ def mergeImage():
     if line_max >20:
         line_max =20
         row_max = 20
+
+    
     num = 0
     pic_max = line_max * row_max
     toImage = Image.new('RGBA', (photo_width*line_max, photo_height*row_max))
@@ -43,6 +45,8 @@ def mergeImage():
             pic_fole_head = Image.open(photo_path_list[num])
             
             tmppic = pic_fole_head.resize((photo_width, photo_height))
+            print(j%line_max*photo_width, row_max ,photo_height, photo_width)
+
             loc = (int(j%line_max*photo_width, int(i%row_max*photo_height)))
             toImage.paste(tmppic, loc)
             num += 1
@@ -51,7 +55,8 @@ def mergeImage():
         if num >= pic_max:
             break
         print(toImage.size)
-        toImage.save('head_photo.png')
+    
+    toImage.save('head_photo.png')
 
 
 
