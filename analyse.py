@@ -47,7 +47,7 @@ def mergeImage():
             tmppic = pic_fole_head.resize((photo_width, photo_height))
             print(j%line_max*photo_width, row_max ,photo_height, photo_width)
 
-            loc = (int(j%line_max*photo_width, int(i%row_max*photo_height)))
+            loc = (int(j%line_max*photo_width), int(i%row_max*photo_height))
             toImage.paste(tmppic, loc)
             num += 1
             if num >= len(photo_path_list):
