@@ -54,4 +54,23 @@ def mergeImage():
     toImage.save('head_photo.png')
 
 
-mergeImage()
+
+def make_photo():
+        dirName = os.getcwd() + '/images'
+        for root, dirs, files in os.walk(dirName):
+            # print(files, len(files))
+            for file in files:
+                file_dir = '{}/{}'.format(root, file)
+                img = Image.open(file_dir)
+                region=(0,0,250,400)
+                cropimg = img.crop(region)
+                cropimg.save('./1/{}'.format(file))
+    
+
+
+
+
+
+
+# mergeImage()
+make_photo()
