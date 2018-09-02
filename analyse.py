@@ -31,6 +31,8 @@ def mergeImage():
         line_max = 20
         row_max = 20
 
+        
+
     num = 0
     pic_max = line_max * row_max
     toImage = Image.new(
@@ -51,7 +53,7 @@ def mergeImage():
         if num >= pic_max:
             break
         print(toImage.size)
-    toImage.save('head_photo.png')
+    toImage.save('head_photo11.png')
 
 
 
@@ -62,15 +64,18 @@ def make_photo():
             for file in files:
                 file_dir = '{}/{}'.format(root, file)
                 img = Image.open(file_dir)
-                region=(0,0,250,400)
-                cropimg = img.crop(region)
-                cropimg.save('./1/{}'.format(file))
+                img.resize((80, 80))
+                # region=(0,20,70,70)
+                # cropimg = img.crop(region)
+                # cropimg.save('0{}'.format(file))
+                img.save('0{}'.format(file))
+
     
 
 
 
 
 
+# make_photo()
+mergeImage()
 
-# mergeImage()
-make_photo()
