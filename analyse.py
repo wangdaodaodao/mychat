@@ -52,4 +52,5 @@ def mergeImage():
     toImage.save('head_photo.png')
 
 
+    
 mergeImage()
