@@ -7,8 +7,8 @@ import re
 import os
 import math
 import PIL.Image as Image
-import 
-import 
+
+ 
 
 def mergeImage():
     photo_width = 50
@@ -57,27 +57,20 @@ def mergeImage():
 
 def make_photo():
         dirName = os.getcwd() + '/images'
+        dirName2 =  os.getcwd() + '/images2'
         for root, dirs, files in os.walk(dirName):
             # print(files, len(files))
             for file in files:
                 file_dir = '{}/{}'.format(root, file)
+                print(file_dir)
                 img = Image.open(file_dir)
-                img.resize((80, 80))
-                # region=(0,20,70,70)
+                width, height = img.size
+                region=(0,20,70,70)
                 # cropimg = img.crop(region)
-                # cropimg.save('0{}'.format(file))
-                img.save('0{}'.format(file))
+                print(img2.size)
+                img2.save('{}/{}'.format(dirName2, file))
 
     
 
 
-<<<<<<< HEAD
-
-
-
-# make_photo()
-=======
-    
->>>>>>> 72788d1f299b3135e1f029aded2bbf55fdbca696
-mergeImage()
-
+make_photo()
