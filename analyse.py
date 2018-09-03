@@ -10,11 +10,11 @@ import PIL.Image as Image
 
  
 
-def mergeImage():
+def mergeImage(dirName):
     photo_width = 50
     photo_height = 50
     photo_path_list = []
-    dirName = os.getcwd() + '/images'
+    # dirName = os.getcwd() + '/images'
 
     for root, dirs, files in os.walk(dirName):
         for file in files:
@@ -41,7 +41,7 @@ def mergeImage():
     for i in range(0, row_max):
         for j in range(0, line_max):
             pic_fole_head = Image.open(photo_path_list[num])
-            tmppic = pic_fole_head.resize((photo_width, photo_height))
+            tmppic = pic_fole_head.resize((photo_width, photo_height),  Image.ANTIALIAS)
             print(j % line_max * photo_width, row_max, photo_height, photo_width)
             loc = (int(j % line_max * photo_width),int(i % row_max * photo_height))
             toImage.paste(tmppic, loc)
@@ -51,7 +51,7 @@ def mergeImage():
         if num >= pic_max:
             break
         print(toImage.size)
-    toImage.save('head_photo11.png')
+    toImage.save('{}/head_photo11.png'.format(dirName))
 
 
 
@@ -65,12 +65,15 @@ def make_photo():
                 print(file_dir)
                 img = Image.open(file_dir)
                 width, height = img.size
-                region=(0,20,70,70)
-                # cropimg = img.crop(region)
+                region=(0,500,700,1100)
+                cropimg = img.crop(region)
+                print(cropimg.size)
+                img2 = cropimg.resize((100, 100), Image.ANTIALIAS)
                 print(img2.size)
                 img2.save('{}/{}'.format(dirName2, file))
 
-    
 
 
-make_photo()
+
+# make_photo()
+mergeImage(os.getcwd() + '/images2')
