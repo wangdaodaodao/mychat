@@ -7,7 +7,8 @@ import re
 import os
 import math
 import PIL.Image as Image
-
+import 
+import 
 
 def mergeImage():
     photo_width = 50
@@ -35,17 +36,14 @@ def mergeImage():
 
     num = 0
     pic_max = line_max * row_max
-    toImage = Image.new(
-        'RGBA', (photo_width * line_max, photo_height * row_max))
+    toImage = Image.new('RGBA', (photo_width * line_max, photo_height * row_max))
 
     for i in range(0, row_max):
         for j in range(0, line_max):
             pic_fole_head = Image.open(photo_path_list[num])
             tmppic = pic_fole_head.resize((photo_width, photo_height))
-            print(j % line_max * photo_width,
-                  row_max, photo_height, photo_width)
-            loc = (int(j % line_max * photo_width),
-                   int(i % row_max * photo_height))
+            print(j % line_max * photo_width, row_max, photo_height, photo_width)
+            loc = (int(j % line_max * photo_width),int(i % row_max * photo_height))
             toImage.paste(tmppic, loc)
             num += 1
             if num >= len(photo_path_list):
@@ -73,9 +71,13 @@ def make_photo():
     
 
 
+<<<<<<< HEAD
 
 
 
 # make_photo()
+=======
+    
+>>>>>>> 72788d1f299b3135e1f029aded2bbf55fdbca696
 mergeImage()
 
