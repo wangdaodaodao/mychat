@@ -32,8 +32,6 @@ def mergeImage(dirName):
         line_max = 20
         row_max = 20
 
-        
-
     num = 0
     pic_max = line_max * row_max
     toImage = Image.new('RGBA', (photo_width * line_max, photo_height * row_max))
