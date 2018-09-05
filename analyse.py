@@ -14,7 +14,8 @@ import PIL.Image as Image
 
 from to_mongo import MongoPipeline
 
- 
+def get_pie(title, name_list, num_list):
+    pass
 
 def mergeImage():
     photo_width = 50
