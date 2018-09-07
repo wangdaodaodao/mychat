@@ -70,4 +70,3 @@ def make_photo():
 
 
 
-make_photo()

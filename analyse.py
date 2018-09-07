@@ -7,17 +7,30 @@ import re
 import os
 import math
 
+<<<<<<< HEAD
 from pyecharts import Bar, Grid, WordCloud, Pie, Map
 from collections import Counter
+=======
+from pyecharts import Bar,Grid, Word
+from collections import Counter
+import jieba.analyse
+>>>>>>> 21c16047507fea056843ba45e268621409a401b9
 import PIL.Image as Image
 import codecs
 
 from to_mongo import MongoPipeline
 
+<<<<<<< HEAD
 def get_pie(title, name_list, num_list):
     friend_nums = num_list[0] + num_list[1] + num_list[2]
     subtitle = '共有：{}个好友'.format(friend_nums)
     pie = Pie(title, page_title)
+=======
+from to_mongo import MongoPipeline
+
+def get_pie(title, name_list, num_list):
+    pass
+>>>>>>> 21c16047507fea056843ba45e268621409a401b9
 
 def mergeImage():
     photo_width = 50
