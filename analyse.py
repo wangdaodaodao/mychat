@@ -7,30 +7,15 @@ import re
 import os
 import math
 
-<<<<<<< HEAD
-from pyecharts import Bar, Grid, WordCloud, Pie, Map
-from collections import Counter
-=======
-from pyecharts import Bar,Grid, Word
-from collections import Counter
-import jieba.analyse
->>>>>>> 21c16047507fea056843ba45e268621409a401b9
-import PIL.Image as Image
+from pyecharts import Pie
 import codecs
 
 from to_mongo import MongoPipeline
 
-<<<<<<< HEAD
-def get_pie(title, name_list, num_list):
-    friend_nums = num_list[0] + num_list[1] + num_list[2]
-    subtitle = '共有：{}个好友'.format(friend_nums)
-    pie = Pie(title, page_title)
-=======
-from to_mongo import MongoPipeline
 
 def get_pie(title, name_list, num_list):
     pass
->>>>>>> 21c16047507fea056843ba45e268621409a401b9
+
 
 def mergeImage():
     photo_width = 50
@@ -56,14 +41,18 @@ def mergeImage():
 
     num = 0
     pic_max = line_max * row_max
-    toImage = Image.new('RGBA', (photo_width * line_max, photo_height * row_max))
+    toImage = Image.new(
+        'RGBA', (photo_width * line_max, photo_height * row_max))
 
     for i in range(0, row_max):
         for j in range(0, line_max):
             pic_fole_head = Image.open(photo_path_list[num])
-            tmppic = pic_fole_head.resize((photo_width, photo_height),  Image.ANTIALIAS)
-            print(j % line_max * photo_width, row_max, photo_height, photo_width)
-            loc = (int(j % line_max * photo_width),int(i % row_max * photo_height))
+            tmppic = pic_fole_head.resize(
+                (photo_width, photo_height),  Image.ANTIALIAS)
+            print(j % line_max * photo_width,
+                  row_max, photo_height, photo_width)
+            loc = (int(j % line_max * photo_width),
+                   int(i % row_max * photo_height))
             toImage.paste(tmppic, loc)
             num += 1
             if num >= len(photo_path_list):
@@ -72,7 +61,3 @@ def mergeImage():
             break
         print(toImage.size)
     toImage.save('{}/head_photo11.png'.format(dirName))
-
-
-
-
