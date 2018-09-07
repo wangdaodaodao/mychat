@@ -6,9 +6,18 @@ import json
 import re
 import os
 import math
-import PIL.Image as Image
 
- 
+from pyecharts import Bar, Grid, WordCloud, Pie, Map
+from collections import Counter
+import PIL.Image as Image
+import codecs
+
+from to_mongo import MongoPipeline
+
+def get_pie(title, name_list, num_list):
+    friend_nums = num_list[0] + num_list[1] + num_list[2]
+    subtitle = '共有：{}个好友'.format(friend_nums)
+    pie = Pie(title, page_title)
 
 def mergeImage():
     photo_width = 50
@@ -52,26 +61,5 @@ def mergeImage():
     toImage.save('{}/head_photo11.png'.format(dirName))
 
 
-...
-def make_photo():
-        dirName = os.getcwd() + '/images'
-        dirName2 =  os.getcwd() + '/images2'
-        for root, dirs, files in os.walk(dirName):
-            #遍历文件
-            for file in files:
-                file_dir = '{}/{}'.format(root, file)
-                print(file_dir)
-                img = Image.open(file_dir)
-                width, height = img.size
-                #裁剪区域
-                region=(0,500,700,1100)
-                cropimg = img.crop(region)
-                print(cropimg.size)
-                #同比例缩放,注意images.ANTIALIAS参数
-                img2 = cropimg.resize((100, 100), Image.ANTIALIAS)
-                print(img2.size)
-                img2.save('{}/{}'.format(dirName2, file))
 
-
-...
 
