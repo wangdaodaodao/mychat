@@ -10,6 +10,7 @@ import math
 from pyecharts import Pie
 import codecs
 
+
 from to_mongo import MongoPipeline
 
 
@@ -61,3 +62,7 @@ def mergeImage():
             break
         print(toImage.size)
     toImage.save('{}/head_photo11.png'.format(dirName))
+
+
+def __main__ :
+    pass
