@@ -94,6 +94,8 @@ if __name__ == '__main__':
         friend['Province'] = re.sub('[a-zA-Z]', '', friend['Province']).strip()
         if friend['Province'] != '':
             Province_counter[friend['Province']] += 1
+            # if '山东' in friend['Province']:
+            #     print(friend['NickName'])
 
 
 
