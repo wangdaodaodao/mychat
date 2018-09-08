@@ -82,5 +82,20 @@ if __name__ == '__main__':
     friends_file = './data/friends.json'
     with codecs.open(friends_file, encoding='utf-8') as f:
         friends = json.load(f)
+
     sex_counter = Counter()
-    
+    Province_counter = Counter()
+    Signature_counter = Counter()
+    NickName_list = []
+
+    for friend in friends:
+        sex_counter[friend['Sex']] += 1
+        
+        friend['Province'] = re.sub('[a-zA-Z]', '', friend['Province']).strip()
+        if friend['Province'] != '':
+            Province_counter[friend['Province']] += 1
+
+
+
+    print(sex_counter, Province_counter)
+
