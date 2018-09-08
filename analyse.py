@@ -62,6 +62,3 @@ def mergeImage():
             break
         print(toImage.size)
     toImage.save('{}/head_photo11.png'.format(dirName))
-
-
-
