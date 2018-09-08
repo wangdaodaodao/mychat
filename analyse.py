@@ -9,13 +9,17 @@ import math
 
 from pyecharts import Pie
 import codecs
+from collections import Counter
+import jieba.analyse
+import PIL.Image as Image
 
 
 from to_mongo import MongoPipeline
 
 
 def get_pie(title, name_list, num_list):
-    pass
+    friend_nums = num_list[0] + num_list[1] + num_list[2]
+    
 
 
 def mergeImage():
@@ -62,3 +66,21 @@ def mergeImage():
             break
         print(toImage.size)
     toImage.save('{}/head_photo11.png'.format(dirName))
+
+
+
+
+
+
+if __name__ == '__main__':
+    
+    # mongodb = db()
+    # friends_info = mongodb.from_mongo()
+    # mongodb.close_mongo()
+    # frieds = list(friends_info)
+
+    friends_file = './data/friends.json'
+    with codecs.open(friends_file, encoding='utf-8') as f:
+        friends = json.load(f)
+    sex_counter = Counter()
+    
