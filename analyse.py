@@ -64,5 +64,4 @@ def mergeImage():
     toImage.save('{}/head_photo11.png'.format(dirName))
 
 
-def __main__ :
-    pass
+
