@@ -7,7 +7,7 @@ import re
 import os
 import math
 
-from pyecharts import Pie, Map
+from pyecharts import Pie, Map, Bar, WordCloud
 import codecs
 from collections import Counter
 import jieba.analyse
@@ -44,13 +44,31 @@ def get_pie(title, name_list, num_list):
     out_file_name = './analyse/{}.html'.format(title)
     pie.render(out_file_name)
 
+def get_bar(title, name_list, num_list):
+    bar = Bar(title, title_text_size=30, title_pos='center')
+    bar.add('', name_list, num_list, title_pos='center', xaxis_interval=0, xaxis_rotate=27,
+            xaxis_label_textcolor=20, yaxis_label_textcolor=20, yaxis_name_pos='end', yaxis_pos='%50')
+    bar.show_config()
+    # graph = Graph(width=1300, height=800)
+    # graph.add(bar, graph_top='13%', graph_bottom='24%', graph_left='15%', graph_right='15%')
+    out_file_name = './analyse/{}.html'.format(title)
+    bar.render(out_file_name)
+
 def get_map(title, name_list, num_list):
     _map = Map(title, width=1300, height=800, title_pos='center', title_text_size=30)
     _map.add('', name_list, num_list, maptype='china', is_visulamap=True, visual_text_color='#000')
     out_file_name = './analyse/{}.html'.format(title)
     _map.render(out_file_name)
 
-# def 
+def word_clout(title,name_list,num_list,word_size_range):
+    '''词云图'''
+
+    wordcloud = WordCloud(width=1400,height=900)
+
+    wordcloud.add("",name_list,num_list,word_size_range=word_size_range,shape='pentagon')
+    out_file_name = './analyse/'+title+'.html'
+    wordcloud.render(out_file_name)
+    
 def mergeImage():
     photo_width = 50
     photo_height = 50
@@ -128,3 +146,8 @@ if __name__ == '__main__':
 
     name_list, num_list = counter2list(Province_counter.most_common(15))
     get_map('微信地区统计', name_list, num_list)
+    get_bar('地区统计', name_list ,num_list)
+
+
+    name_list,num_list = counter2list(Signature_counter.most_common(200))
+    word_clout('微信好友签名关键字',name_list,num_list,[20,100])
