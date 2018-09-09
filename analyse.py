@@ -7,7 +7,7 @@ import re
 import os
 import math
 
-from pyecharts import Pie
+from pyecharts import Pie, Map
 import codecs
 from collections import Counter
 import jieba.analyse
@@ -20,22 +20,37 @@ from to_mongo import MongoPipeline
 def dict2list(_dict):
     name_list = []
     num_list = []
-    for k,v in _dict.items():
+    for k, v in _dict.items():
         name_list.append(k)
         num_list.append(v)
+    return name_list, num_list
+
+def counter2list(_counter):
+    num_list = []
+    name_list = []
+    for item in _counter:
+        name_list.append(item[0])
+        num_list.append(item[1])
     return name_list, num_list
 
 def get_pie(title, name_list, num_list):
     friend_nums = num_list[0] + num_list[1] + num_list[2]
     subtitle = '共有{}个好友'.format(friend_nums)
 
-    pie = Pie(title, title_text_size=30, title_pos='center',subtitle=subtitle, subtitle_text_size=25,width=800,height = 800)
-    pie.add('', name_list, num_list, is_label_show=True, center=[50, 45], radius=[0, 50], legend = 'right', legend_orient='vertical', label_text_size=20)
+    pie = Pie(title, title_text_size=30, title_pos='center',
+              subtitle=subtitle, subtitle_text_size=25, width=800, height=800)
+    pie.add('', name_list, num_list, is_label_show=True, center=[50, 45], radius=[
+            0, 50], legend='right', legend_orient='vertical', label_text_size=20)
     out_file_name = './analyse/{}.html'.format(title)
     pie.render(out_file_name)
-    
 
+def get_map(title, name_list, num_list):
+    _map = Map(title, width=1300, height=800, title_pos='center', title_text_size=30)
+    _map.add('', name_list, num_list, maptype='china', is_visulamap=True, visual_text_color='#000')
+    out_file_name = './analyse/{}.html'.format(title)
+    _map.render(out_file_name)
 
+# def 
 def mergeImage():
     photo_width = 50
     photo_height = 50
@@ -82,12 +97,8 @@ def mergeImage():
     toImage.save('{}/head_photo11.png'.format(dirName))
 
 
-
-
-
-
 if __name__ == '__main__':
-    
+
     # mongodb = db()
     # friends_info = mongodb.from_mongo()
     # mongodb.close_mongo()
@@ -104,14 +115,16 @@ if __name__ == '__main__':
 
     for friend in friends:
         sex_counter[friend['Sex']] += 1
-        
+
         friend['Province'] = re.sub('[a-zA-Z]', '', friend['Province']).strip()
         if friend['Province'] != '':
             Province_counter[friend['Province']] += 1
             # if '山东' in friend['Province']:
             #     print(friend['NickName'])
 
-
-
     name_list, num_list = dict2list(sex_counter)
     get_pie('性别统计', name_list, num_list)
+
+
+    name_list, num_list = counter2list(Province_counter.most_common(15))
+    get_map('微信地区统计', name_list, num_list)
