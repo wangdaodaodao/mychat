@@ -17,8 +17,22 @@ import PIL.Image as Image
 from to_mongo import MongoPipeline
 
 
+def dict2list(_dict):
+    name_list = []
+    num_list = []
+    for k,v in _dict.items():
+        name_list.append(k)
+        num_list.append(v)
+    return name_list, num_list
+
 def get_pie(title, name_list, num_list):
     friend_nums = num_list[0] + num_list[1] + num_list[2]
+    subtitle = '共有{}个好友'.format(friend_nums)
+
+    pie = Pie(title, title_text_size=30, title_pos='center',subtitle=subtitle, subtitle_text_size=25,width=800,height = 800)
+    pie.add('', name_list, num_list, is_label_show=True, center=[50, 45], radius=[0, 50], legend = 'right', legend_orient='vertical', label_text_size=20)
+    out_file_name = './analyse/{}.html'.format(title)
+    pie.render(out_file_name)
     
 
 
@@ -99,5 +113,5 @@ if __name__ == '__main__':
 
 
 
-    print(sex_counter, Province_counter)
-
+    name_list, num_list = dict2list(sex_counter)
+    get_pie('性别统计', name_list, num_list)
