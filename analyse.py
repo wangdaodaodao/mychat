@@ -49,8 +49,6 @@ def get_bar(title, name_list, num_list):
             xaxis_label_textcolor=20, yaxis_label_textcolor=20, yaxis_name_pos='end',
             yaxis_pos='%50')
     bar.show_config()
-    # graph = Graph(width=1300, height=800)
-    # graph.add(bar, graph_top='13%', graph_bottom='24%', graph_left='15%', graph_right='15%')
     out_file_name = './analyse/{}.html'.format(title)
     bar.render(out_file_name)
 
@@ -138,14 +136,14 @@ if __name__ == '__main__':
             # if '山东' in friend['Province']:
             #     print(friend['NickName'])
 
-    name_list, num_list = dict2list(sex_counter)
-    get_pie('性别统计', name_list, num_list)
+    # name_list, num_list = dict2list(sex_counter)
+    # get_pie('性别统计', name_list, num_list)
 
 
-    name_list, num_list = counter2list(Province_counter.most_common(15))
-    get_map('微信地区统计', name_list, num_list)
-    get_bar('地区统计', name_list ,num_list)
+    # name_list, num_list = counter2list(Province_counter.most_common(15))
+    # get_map('微信地区统计', name_list, num_list)
+    # get_bar('地区统计', name_list ,num_list)
 
 
-    name_list,num_list = counter2list(Signature_counter.most_common(200))
-    word_clout('微信好友签名关键字',name_list,num_list,[20,100])
+    # name_list,num_list = counter2list(Signature_counter.most_common(200))
+    # word_clout('微信好友签名关键字',name_list,num_list,[20,100])
