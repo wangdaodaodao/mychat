@@ -27,43 +27,56 @@ class Spider():
         total = ''
         url = 'https://alpha.wallhaven.cc/search?q={}&categories=111&purity=100&sorting=relevance&order=desc'.format(
             keyword)
+
         html = requests.get(url, headers=self.headers)
         selector = etree.HTML(html.text)
         pageinfo = selector.xpath(
             '//header[@class="listing-header"]/h1[1]/text()')
         string = str(pageinfo[0])
+        # print(string)
         numlist = list(filter(str.isdigit, string))
+        # print(numlist)
         for item in numlist:
             total += item
             totalpagenum = int(total)
+        # print(totalpagenum)
         return totalpagenum
 
     def get_links(self, number):
         url = "https://alpha.wallhaven.cc/search?q={}&categories=111&purity=100&sorting=relevance&order=desc&page={}".format(
             keyword, number)
+        # print(url)
         try:
             html = requests.get(url, headers=self.headers)
             selector = etree.HTML(html.text)
             pic_linklist = selector.xpath(
                 '//a[@class="jsAnchor thumb-tags-toggle tagged"]/@href')
+            return pic_linklist
+            # print(pic_linklist)
         except Exception as e:
             print(e)
 
     def download(self, url, count):
         string = url.strip(
             '/thumbTags').strip('https://alpha.wallhaven.cc/wallpaper/')
+        print(string)
         html = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-' + string + '.jpg'
+
+        # print(html)
         pic_path = (self.filepath + keyword + str(count) + '.jpg')
-        try:
-            start = time.time()
-            pic = requests.get(html, headers=self.headers)
-            f = open(pic_path, 'wb')
-            f.write(pic.content)
-            f.close()
-            end = time.time()
-            print('waste time{}'.format(end - start))
-        except Exception as e:
-            print(e)
+        if os.path.exists(pic_path):
+            print('文件已存在！')
+        else:
+            try:
+                start = time.time()
+                pic = requests.get(html, headers=self.headers)
+                f = open(pic_path, 'wb')
+                f.write(pic.content)
+                f.close()
+                end = time.time()
+                print('waste time{}'.format(end - start))
+            except Exception as e:
+                print(e)
 
     def main_function(self):
         self.creat_file()
@@ -71,11 +84,15 @@ class Spider():
         times = int(count / 24 + 1)
         j = 1
         start = time.time()
-        for i in range(times):
-            pic_urls = self.get_links(i + 1)
+        # x = self.get_links(j)
+        # print(x)
+        for j in range(times):
+            pic_urls = self.get_links(j)
+            print(pic_urls)
             start2 = time.time()
             threads = []
             for item in pic_urls:
+                print(item)
                 t = Thread(target=self.download, args=[item, j])
                 t.start()
                 threads.append(t)
@@ -83,6 +100,7 @@ class Spider():
             for t in threads:
                 t.join()
             end2 = time.time()
+            # time.sleep(3)
         end = time.time()
         print('总耗时：{}'.format(end - start2))
 
