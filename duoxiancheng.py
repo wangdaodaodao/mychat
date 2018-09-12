@@ -75,7 +75,7 @@ class Spider():
         count = self.get_pagenum()
         times = int(count / 24 + 1)
         j = 1
-        start = time.time()
+        start1 = time.time()
         for j in range(times):
             pic_urls = self.get_links(j)
             threads = []
@@ -86,8 +86,8 @@ class Spider():
                 j += 1
             for t in threads:
                 t.join()
-        end = time.time()
-        print('总耗时：{}'.format(end - start))
+        end1 = time.time()
+        print('总耗时：{}'.format(end1 - start1))
 
 
 spider = Spider()
