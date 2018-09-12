@@ -51,23 +51,22 @@ class Spider():
         except Exception as e:
             print(e)
 
+
     def download(self, url, count):
         string = url.strip(
             '/thumbTags').strip('https://alpha.wallhaven.cc/wallpaper/')
-        print(string)
         html = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-' + string + '.jpg'
-        pic_path = (self.filepath + keyword + str(count) + '.jpg')
+        pic_path = '{}/{}-{}.jpg'.format(self.pic_path, count, str(string))
         if os.path.exists(pic_path):
             print('文件已存在！')
         else:
             try:
                 start = time.time()
                 pic = requests.get(html, headers=self.headers)
-                f = open(pic_path, 'wb')
-                f.write(pic.content)
-                f.close()
+                with open(pic_path, 'wb') as code:
+                    code.write(pic.content)
                 end = time.time()
-                print('waste time{}'.format(end - start))
+                print('正在下载图片{}，单个文件耗时：{}s'.format(string,(end - start)))
             except Exception as e:
                 print(e)
 
@@ -79,7 +78,6 @@ class Spider():
         start = time.time()
         for j in range(times):
             pic_urls = self.get_links(j)
-            print(pic_urls)
             threads = []
             for item in pic_urls:
                 t = Thread(target=self.download, args=[item, j])
