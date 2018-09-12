@@ -56,7 +56,7 @@ class Spider():
         string = url.strip(
             '/thumbTags').strip('https://alpha.wallhaven.cc/wallpaper/')
         html = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-' + string + '.jpg'
-        pic_path = '{}/{}-{}.jpg'.format(self.pic_path, count, str(string))
+        pic_path = '{}/{}-{}.jpg'.format(self.filepath, count, str(string))
         if os.path.exists(pic_path):
             print('文件已存在！')
         else:
