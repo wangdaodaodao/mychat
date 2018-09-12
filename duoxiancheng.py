@@ -80,10 +80,13 @@ class Spider():
             pic_urls = self.get_links(j)
             threads = []
             for item in pic_urls:
+                start2 = time.time()
                 t = Thread(target=self.download, args=[item, j])
                 t.start()
                 threads.append(t)
+                end2= time.time()
                 j += 1
+            print('第{}页下载完毕！'.format(j))
             for t in threads:
                 t.join()
         end1 = time.time()
