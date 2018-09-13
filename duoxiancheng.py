@@ -65,6 +65,7 @@ class Spider():
             try:
                 pic = requests.get(html, headers=self.headers)
                 with open(pic_path, 'wb') as code:
+
                     code.write(pic.content)             
             except Exception as e:
                 print(e)
@@ -88,7 +89,7 @@ class Spider():
                 threads.append(t)
                 end2= time.time()
                 j += 1
-            print('第{}页下载完毕！'.format(j))
+            print('第{}{}页下载完毕！'.format(j))
             for t in threads:
                 t.join()
         
