@@ -52,28 +52,30 @@ class Spider():
             print(e)
 
 
+
     def download(self, url, count):
+        start = time.time()
         string = url.strip(
             '/thumbTags').strip('https://alpha.wallhaven.cc/wallpaper/')
         html = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-' + string + '.jpg'
         pic_path = '{}/{}-{}.jpg'.format(self.filepath, count, str(string))
         if os.path.exists(pic_path):
             print('文件已存在！')
-        else:
+        else: 
             try:
-                start = time.time()
                 pic = requests.get(html, headers=self.headers)
                 with open(pic_path, 'wb') as code:
-                    code.write(pic.content)
-                end = time.time()
-                print('正在下载图片{}，单个文件耗时：{}s'.format(string,(end - start)))
+                    code.write(pic.content)             
             except Exception as e:
                 print(e)
+        end = time.time()
+        print('正在下载图片{}，单个文件耗时：{}s'.format(string,(end - start)))
 
     def main_function(self):
         self.creat_file()
         count = self.get_pagenum()
         times = int(count / 24 + 1)
+
         j = 1
         start1 = time.time()
         for j in range(times):
@@ -89,6 +91,7 @@ class Spider():
             print('第{}页下载完毕！'.format(j))
             for t in threads:
                 t.join()
+        
         end1 = time.time()
         print('总耗时：{}'.format(end1 - start1))
 
