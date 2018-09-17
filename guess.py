@@ -18,18 +18,20 @@ def guess_one():
 
     while bingo:
         if guess_one < one:
-            print('第--{}--次猜数字是<{}>,小了'.format(i, guess_one))
+            print('第--{}--次猜数字是<{}>,小了'.format(i, guess_one), )
             # the_big_one = the_one
             the_small_one = guess_one
+            print('[{}-{}]'.format(the_small_one, the_big_one))
+
             guess_one = int(guess_one + (the_big_one - guess_one)/2 + 1)
-            print('猜错了，重新猜{},正确是{}'.format(guess_one, one))
+            print('猜错了，重新猜{}'.format(guess_one))
             
         elif guess_one > one:
             print('第--{}--次猜数字是<{}>，大了'.format(i, guess_one))
             the_big_one = guess_one
-            # the_small_one = 
+            print('[{}-{}]'.format(the_small_one, the_big_one), )
             guess_one = int( (the_small_one + guess_one)/2)
-            print('猜错了，重新猜{},正确是{}'.format(guess_one, one))
+            print('猜错了，重新猜{}'.format(guess_one))
         elif guess_one == one + 1:
             pass
 
@@ -37,7 +39,7 @@ def guess_one():
             print('猜对了，{}={}'.format(guess_one, one))
             bingo = False
         i += 1
-        print('总共猜了<<<{}>>>次'.format(i))
+    print('总共猜了<<<{}>>>次'.format(i))
         # time.sleep(1)
     return i
     
@@ -45,28 +47,6 @@ def guess_one():
 
 
 
-def guess_two():
-    guess_one = int(the_one/2)
-    i = 1
-    while True:
-        if guess_one < one:
-            print('第{}次猜数字是<{}>,小了'.format(i, guess_one))
-            guess_one = int(guess_one + math.sqrt(one - guess_one))
-            print('猜错了，重新猜{},正确是{}'.format(guess_one, one))
-        elif guess_one > one:
-            print('第{}次猜数字是<{}>，大了'.format(i, guess_one))
-            guess_one = int(math.sqrt(guess_one))
-            print('猜错了，重新猜{},正确是{}'.format(guess_one, one))
-        elif guess_one == one + 1:
-            pass
-
-        elif guess_one == one:
-            print('猜对了，{}={}'.format(guess_one, one))
-            bingo = False
-        i += 1
-        time.sleep(1)
-        if i > 15:
-            break
 
 
 x = 0
