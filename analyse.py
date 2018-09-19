@@ -24,6 +24,7 @@ def dict2list(_dict):
         num_list.append(v)
     return name_list, num_list
 
+
 def counter2list(_counter):
     num_list = []
     name_list = []
@@ -31,6 +32,7 @@ def counter2list(_counter):
         name_list.append(item[0])
         num_list.append(item[1])
     return name_list, num_list
+
 
 def get_pie(title, name_list, num_list):
     friend_nums = num_list[0] + num_list[1] + num_list[2]
@@ -43,6 +45,7 @@ def get_pie(title, name_list, num_list):
     out_file_name = './analyse/{}.html'.format(title)
     pie.render(out_file_name)
 
+
 def get_bar(title, name_list, num_list):
     bar = Bar(title, title_text_size=30, title_pos='center')
     bar.add('', name_list, num_list, title_pos='center', xaxis_interval=0, xaxis_rotate=27,
@@ -52,15 +55,20 @@ def get_bar(title, name_list, num_list):
     out_file_name = './analyse/{}.html'.format(title)
     bar.render(out_file_name)
 
+
 def get_map(title, name_list, num_list):
-    _map = Map(title, width=1300, height=800, title_pos='center', title_text_size=30)
-    _map.add('', name_list, num_list, maptype='china', is_visulamap=True, visual_text_color='#000')
+    _map = Map(title, width=1300, height=800,
+               title_pos='center', title_text_size=30)
+    _map.add('', name_list, num_list, maptype='china',
+             is_visulamap=True, visual_text_color='#000')
     out_file_name = './analyse/{}.html'.format(title)
     _map.render(out_file_name)
 
+
 def word_clout(title, name_list, num_list, word_size_range):
     wordcloud = WordCloud(width=1400, height=900)
-    wordcloud.add("", name_list, num_list, word_size_range=word_size_range, shape='pentagon')
+    wordcloud.add("", name_list, num_list,
+                  word_size_range=word_size_range, shape='pentagon')
     out_file_name = './analyse/'+title+'.html'
     wordcloud.render(out_file_name)
 
@@ -139,11 +147,9 @@ if __name__ == '__main__':
     # name_list, num_list = dict2list(sex_counter)
     # get_pie('性别统计', name_list, num_list)
 
-
     # name_list, num_list = counter2list(Province_counter.most_common(15))
     # get_map('微信地区统计', name_list, num_list)
     # get_bar('地区统计', name_list ,num_list)
-
 
     # name_list,num_list = counter2list(Signature_counter.most_common(200))
     # word_clout('微信好友签名关键字',name_list,num_list,[20,100])

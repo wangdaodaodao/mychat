@@ -9,6 +9,7 @@ import codecs
 
 from to_mongo import MongoPipeline as db
 
+
 def save_to_file(friends_list):
     out_file = './data/friends.json'
     with codecs.open(out_file, 'w', encoding='utf-8') as f:
@@ -18,6 +19,7 @@ def save_to_file(friends_list):
 def save_to_mongo(friends_list):
     mongodb = db()
     mongodb.to_mongo(friends_list)
+
 
 def download_images(friends_list):
     imamge_dir = './images/'
@@ -32,10 +34,9 @@ def download_images(friends_list):
     print('头像下载完毕！')
 
 
-
 if __name__ == '__main__':
     itchat.auto_login(hotReload=True)
-    friends = itchat.get_friends(update=True)[0: ]
+    friends = itchat.get_friends(update=True)[0:]
     friends_list = []
 
     sex_dict = {}
@@ -56,7 +57,6 @@ if __name__ == '__main__':
         # 保存到mongo
         # save_to_mongodb(item)
         friends_list.append(item)
-
 
 
 # save_to_file(friends_list)
