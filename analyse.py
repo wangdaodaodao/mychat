@@ -146,4 +146,4 @@ if __name__ == '__main__':
 
 
     # name_list,num_list = counter2list(Signature_counter.most_common(200))
-    word_clout('微信好友签名关键字',name_list,num_list,[20,100])
+    # word_clout('微信好友签名关键字',name_list,num_list,[20,100])

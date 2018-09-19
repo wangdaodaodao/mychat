@@ -7,7 +7,7 @@ from threading import Thread
 from lxml import etree
 
 keyword = input('输入关键词：')
-if len(keyword) < 2:
+if len(keyword) == 0:
     keyword = '美女'
 
 
@@ -78,23 +78,25 @@ class Spider():
         times = int(count / 24 + 1)
 
         j = 1
-        start1 = time.time()
+        # start1 = time.time()
         for j in range(times):
             pic_urls = self.get_links(j)
             threads = []
+
             for item in pic_urls:
-                start2 = time.time()
+                # start2 = time.time()
                 t = Thread(target=self.download, args=[item, j])
                 t.start()
                 threads.append(t)
-                end2= time.time()
+                # end2= time.time()
                 j += 1
-            print('第{}{}页下载完毕！'.format(j))
+
+            print('第{}页下载完毕！'.format(j))
             for t in threads:
                 t.join()
         
-        end1 = time.time()
-        print('总耗时：{}'.format(end1 - start1))
+        # end1 = time.time()
+        # print('总耗时：{}'.format(end1 - start1))
 
 
 spider = Spider()

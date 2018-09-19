@@ -1,10 +1,8 @@
-import math
 import random
-import time
 
 
 def guess_one():
-    the_one = 99
+    the_one = 999
     one = random.randint(1, the_one)
     print(one)
     bingo = True
