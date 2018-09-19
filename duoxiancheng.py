@@ -1,4 +1,4 @@
-#_*_ coding:utf-8 _*_
+# _*_ coding:utf-8 _*_
 
 import os
 import requests
@@ -51,8 +51,6 @@ class Spider():
         except Exception as e:
             print(e)
 
-
-
     def download(self, url, count):
         start = time.time()
         string = url.strip(
@@ -61,16 +59,15 @@ class Spider():
         pic_path = '{}/{}-{}.jpg'.format(self.filepath, count, str(string))
         if os.path.exists(pic_path):
             print('文件已存在！')
-        else: 
+        else:
             try:
                 pic = requests.get(html, headers=self.headers)
                 with open(pic_path, 'wb') as code:
-
-                    code.write(pic.content)             
+                    code.write(pic.content)
             except Exception as e:
                 print(e)
         end = time.time()
-        print('正在下载图片{}，单个文件耗时：{}s'.format(string,(end - start)))
+        print('正在下载图片{}，单个文件耗时：{}s'.format(string, (end - start)))
 
     def main_function(self):
         self.creat_file()
@@ -94,7 +91,6 @@ class Spider():
             print('第{}页下载完毕！'.format(j))
             for t in threads:
                 t.join()
-        
         # end1 = time.time()
         # print('总耗时：{}'.format(end1 - start1))
 
