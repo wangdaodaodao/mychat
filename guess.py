@@ -2,7 +2,7 @@ import random
 
 
 def guess_one():
-    the_one = 999
+    the_one = 100
     one = random.randint(1, the_one)
     print(one)
     bingo = True
@@ -45,7 +45,7 @@ def guess_one():
 x = 0
 y = []
 z = 0
-while x < 100:
+while x < 10:
     y.append(guess_one())
     x += 1
 print(y)

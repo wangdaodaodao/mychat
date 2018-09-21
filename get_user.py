@@ -2,11 +2,10 @@
 __author__ = 'wangdaodao'
 
 
+import codecs
 import json
 
 import itchat
-import codecs
-
 from to_mongo import MongoPipeline as db
 
 
