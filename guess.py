@@ -2,7 +2,7 @@ import random
 
 
 def guess_one():
-    the_one = 100
+    the_one = 1000000
     one = random.randint(1, the_one)
     print(one)
     bingo = True
@@ -37,7 +37,8 @@ def guess_one():
             print('第--{}--次猜对了，{}={}'.format(i, guess_one, one))
             bingo = False
         i += 1
-    print('总共猜了<<<{}>>>次'.format(i-1))
+    print('{}总共猜了<<<{}>>>次{}'.format('-'*35, (i-1), '-'*30))
+
     return i-1
 
 
@@ -51,4 +52,5 @@ while x < 10:
 print(y)
 for i in y:
     z += i
-print(z/100)
+print(z/10)
+
