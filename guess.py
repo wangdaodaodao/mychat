@@ -2,7 +2,7 @@ import random
 
 
 def guess_one():
-    the_one = 1000000
+    the_one = 1000
     one = random.randint(1, the_one)
     print(one)
     bingo = True
