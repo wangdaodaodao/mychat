@@ -53,7 +53,7 @@ if __name__ == '__main__':
 		item['Signature'] = friend['Signature']
 		item['UserName'] = friend['UserName']
 
-		# 保存到mongo
+		保存到mongo
 		# save_to_mongodb(item)
 		friends_list.append(item)
 
