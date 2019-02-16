@@ -68,4 +68,4 @@ def make_photo():
             break
         print(toImage.size)
 
-    toImage.save('head_photo111.png')
+    toImage.save('head_photo1112.png')
