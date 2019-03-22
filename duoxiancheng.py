@@ -33,6 +33,8 @@ class Spider():
         pageinfo = selector.xpath(
             '//header[@class="listing-header"]/h1[1]/text()')
         string = str(pageinfo[0])
+        # filter() 函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表。该接收两个参数，第一个为函数，第二个为序列
+        print(string)
         numlist = list(filter(str.isdigit, string))
         for item in numlist:
             total += item
@@ -52,7 +54,7 @@ class Spider():
             print(e)
 
     def download(self, url, count):
-        start = time.time()
+        # strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
         string = url.strip(
             '/thumbTags').strip('https://alpha.wallhaven.cc/wallpaper/')
         html = 'http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-' + string + '.jpg'
@@ -61,25 +63,24 @@ class Spider():
             print('文件已存在！')
         else:
             try:
+                start_time = time.time()
                 pic = requests.get(html, headers=self.headers)
                 with open(pic_path, 'wb') as code:
                     code.write(pic.content)
+                end_time = time.time()
             except Exception as e:
                 print(e)
-        end = time.time()
-        print('正在下载图片{}，单个文件耗时：{}s'.format(string, (end - start)))
+        print('正在下载图片{}，单个文件耗时：{}s'.format(string, (end_time - start_time)))
 
     def main_function(self):
         self.creat_file()
         count = self.get_pagenum()
         times = int(count / 24 + 1)
-
         j = 1
-        # start1 = time.time()
+        start1 = time.time()
         for j in range(times):
             pic_urls = self.get_links(j)
             threads = []
-
             for item in pic_urls:
                 # start2 = time.time()
                 t = Thread(target=self.download, args=[item, j])
@@ -87,12 +88,11 @@ class Spider():
                 threads.append(t)
                 # end2= time.time()
                 j += 1
-
             print('第{}页下载完毕！'.format(j))
             for t in threads:
                 t.join()
-        # end1 = time.time()
-        # print('总耗时：{}'.format(end1 - start1))
+        end1 = time.time()
+        print('总耗时：{}'.format(end1 - start1))
 
 
 spider = Spider()
